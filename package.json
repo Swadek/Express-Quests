@@ -20,10 +20,16 @@
   },
   "homepage": "https://github.com/WildCodeSchool/Express-Quests#readme",
   "dependencies": {
+<<<<<<< HEAD
     "@node-rs/argon2": "^1.5.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mysql2": "^2.3.3"
+=======
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "mysql2": "^3.3.2"
+>>>>>>> 38d1cb96a6356f7caad7800213349806665f9239
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
