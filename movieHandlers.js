@@ -1,7 +1,5 @@
 const database = require("./database");
 
-const database = require("./database");
-
 const welcome = (req, res) => {
   res.send("Welcome to my favourite movie list");
 };

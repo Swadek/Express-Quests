@@ -1,4 +1,5 @@
 const argon2 = require("@node-rs/argon2");
+const database = require("./database");
 
 const hashingOptions = {
   type: argon2.argon2id,
@@ -21,4 +22,26 @@ const hashPassword = (req, res, next) => {
     });
 };
 
-module.exports = { hashPassword };
+const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
+  const { email } = req.body
+  database
+    .query("select * from users where email = ?", [email])
+    .then(([users]) => {
+      if (users[0] != null) {
+        req.user = users[0];
+        next();
+      } else {
+        res.sendStatus(401);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error retrieving data from database");
+    });
+};
+
+const verifyPassword = (req, res) => {
+  res.send(req.user);
+}
+
+module.exports = { hashPassword, getUserByEmailWithPasswordAndPassToNext, verifyPassword };
